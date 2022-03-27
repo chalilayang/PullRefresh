@@ -44,7 +44,7 @@ fun PullRefreshIndicator(
     isPulling: Boolean,
     modifier: Modifier = Modifier,
     backgroundColor: Color = Color.White,
-    contentColor: Color = Color.Red,
+    contentColor: Color = Color.Blue,
     shape: Shape = MaterialTheme.shapes.small.copy(CornerSize(percent = 50)),
     elevation: Dp = 6.dp,
 ) {
@@ -84,7 +84,7 @@ fun PullRefreshIndicator(
             targetState = isRefreshing,
             animationSpec = tween(durationMillis = CrossFadeDurationMs)
         ) { refreshing ->
-            Box(modifier = Modifier.background(Color.DarkGray).fillMaxSize(), contentAlignment = Alignment.Center) {
+            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 if (refreshing) {
                     val circleSize = (sizes.arcRadius + sizes.strokeWidth) * 2
                     CircularProgressIndicator(

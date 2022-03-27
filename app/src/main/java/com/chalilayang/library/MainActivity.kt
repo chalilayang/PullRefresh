@@ -25,7 +25,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             PullRefreshTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
@@ -49,18 +48,6 @@ fun DefaultPreview() {
         PullRefresh(
             state = rememberPullRefreshState(isRefreshing = false),
             onRefresh = {},
-            refreshingIndicator = { offsetPx, triggerOffsetPx, isRefreshing, isPulling ->
-                val tip = if (isRefreshing) {
-                    "正在刷新"
-                } else if (isPulling && offsetPx >= triggerOffsetPx) {
-                    "松手刷新"
-                } else if (isPulling && offsetPx < triggerOffsetPx) {
-                    "下拉刷新，松手恢复常态"
-                } else {
-                    "正在恢复常态"
-                }
-                Text(text = tip, modifier = Modifier.padding(0.dp, 40.dp))
-            }
         ) {
             LazyColumn(modifier = Modifier.fillMaxWidth()) {
                 repeat(80) {
