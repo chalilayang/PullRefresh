@@ -13,11 +13,11 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.chalilayang.library.ui.theme.PullRefreshTheme
 import com.chalilayang.pullrefresh.PullRefresh
+import com.chalilayang.pullrefresh.PullRefreshIndicator
 import com.chalilayang.pullrefresh.rememberPullRefreshState
 
 class MainActivity : ComponentActivity() {
@@ -48,6 +48,15 @@ fun DefaultPreview() {
         PullRefresh(
             state = rememberPullRefreshState(isRefreshing = false),
             onRefresh = {},
+            refreshingIndicator = {
+                    pullOffsetPx, triggerRefreshOffsetPx, isRefreshing, isPulling ->
+                PullRefreshIndicator(
+                    modifier = Modifier.padding(0.dp, 20.dp),
+                    pullOffsetPx = pullOffsetPx,
+                    isRefreshing = isRefreshing,
+                    triggerOffsetPx = triggerRefreshOffsetPx,
+                    isPulling = isPulling)
+            }
         ) {
             LazyColumn(modifier = Modifier.fillMaxWidth()) {
                 repeat(80) {

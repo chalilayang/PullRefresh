@@ -1,3 +1,6 @@
+
+## 自定义Indicator1
+
 ![](./isq9l-2271z.gif)
 
 ```kotlin
@@ -38,5 +41,39 @@ fun DefaultPreview() {
 }
 ```
 
+## 自定义Indicator2
 
-`implementation "io.github.chalilayang:pullrefresh:1.0.0"`
+![](./s7aso-s2uj4.gif)
+
+```kotlin
+@Composable
+fun DefaultPreview() {
+    PullRefreshTheme {
+        PullRefresh(
+            state = rememberPullRefreshState(isRefreshing = false),
+            onRefresh = {},
+            refreshingIndicator = {
+                    pullOffsetPx, triggerRefreshOffsetPx, isRefreshing, isPulling ->
+                PullRefreshIndicator(
+                    modifier = Modifier.padding(0.dp, 20.dp),
+                    pullOffsetPx = pullOffsetPx,
+                    isRefreshing = isRefreshing,
+                    triggerOffsetPx = triggerRefreshOffsetPx,
+                    isPulling = isPulling)
+            }
+        ) {
+            LazyColumn(modifier = Modifier.fillMaxWidth()) {
+                repeat(80) {
+                    item {
+                        Greeting("Android $it")
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+## build.gradle添加依赖
+
+`implementation "io.github.chalilayang:pullrefresh:1.0.1"`
