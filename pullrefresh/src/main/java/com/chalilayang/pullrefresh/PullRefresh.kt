@@ -33,7 +33,7 @@ fun PullRefresh(
     modifier: Modifier = Modifier,
     pullEnabled: Boolean = true,
     refreshTriggerOffset: Dp = 120.dp,
-    refreshingOffset: Dp = 60.dp,
+    refreshingOffset: Dp = 100.dp,
     refreshingMaxPullOffset: Dp = 240.dp,
     refreshingIndicator: IndicatorComposable = {
             pullOffsetPx, triggerRefreshOffsetPx, isRefreshing, isPulling ->

@@ -6,13 +6,16 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.indication
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.chalilayang.library.ui.theme.PullRefreshTheme
 import com.chalilayang.pullrefresh.PullRefresh
 import com.chalilayang.pullrefresh.rememberPullRefreshState
@@ -56,7 +59,7 @@ fun DefaultPreview() {
                 } else {
                     "正在恢复常态"
                 }
-                Text(text = tip)
+                Text(text = tip, modifier = Modifier.padding(0.dp, 40.dp))
             }
         ) {
             LazyColumn(modifier = Modifier.fillMaxWidth()) {
