@@ -38,10 +38,12 @@ fun PullRefresh(
     refreshingIndicator: IndicatorComposable = {
             pullOffsetPx, triggerRefreshOffsetPx, isRefreshing, isPulling ->
         PullRefreshIndicator(
+            modifier = Modifier.padding(0.dp, 20.dp),
             pullOffsetPx = pullOffsetPx,
             isRefreshing = isRefreshing,
             triggerOffsetPx = triggerRefreshOffsetPx,
-            isPulling = isPulling
+            isPulling = isPulling,
+
         )
     },
     content: @Composable () -> Unit,
