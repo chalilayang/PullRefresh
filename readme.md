@@ -77,3 +77,7 @@ fun DefaultPreview() {
 ## build.gradle添加依赖
 
 `implementation "io.github.chalilayang:pullrefresh:1.0.1"`
+
+## Thanks
+
+[accompanist-swiperefresh](https://google.github.io/accompanist/swiperefresh/)
