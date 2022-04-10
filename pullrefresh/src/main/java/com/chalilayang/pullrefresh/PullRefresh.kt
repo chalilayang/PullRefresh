@@ -1,14 +1,12 @@
 package com.chalilayang.pullrefresh
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.LocalOverScrollConfiguration
 import androidx.compose.foundation.gestures.OverScrollConfiguration
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
@@ -32,6 +30,7 @@ fun PullRefresh(
     onRefresh: () -> Unit,
     modifier: Modifier = Modifier,
     pullEnabled: Boolean = true,
+    swipeMode: Boolean = false,
     refreshTriggerOffset: Dp = 120.dp,
     refreshingOffset: Dp = 100.dp,
     refreshingMaxPullOffset: Dp = 240.dp,
@@ -68,7 +67,7 @@ fun PullRefresh(
         maxOffsetY = triggerOffsetPx,
     )
     val nestedScrollConnection = remember(state, coroutineScope) {
-        PullRefreshNestedScrollConnection(state, maxOffsetPx, triggerOffsetPx, coroutineScope) {
+        RefreshNestedScrollConnection(state, maxOffsetPx, triggerOffsetPx, coroutineScope) {
             updatedOnRefresh.value.invoke()
         }
     }.apply {
@@ -82,14 +81,12 @@ fun PullRefresh(
                 .fillMaxWidth()
                 .clipToBounds()
                 .nestedScroll(connection = nestedScrollConnection)) {
-//            Row(modifier = Modifier.background(Color.Red).fillMaxWidth().height(refreshingMaxPullOffset)) {}
-//            Row(modifier = Modifier.background(Color.Yellow).fillMaxWidth().height(refreshTriggerOffset)) {}
-//            Row(modifier = Modifier.background(Color.Blue).fillMaxWidth().height(refreshingOffset)) {}
-            Box(modifier = Modifier.offset { IntOffset(0, state.pullOffsetPx.toInt()) }) {
+            val offset = IntOffset(0, if (swipeMode) 0 else state.pullOffsetPx.toInt())
+            Box(modifier = Modifier.offset { offset }) {
                 content()
             }
             var size by remember { mutableStateOf(IntSize(0, 0)) }
-            Row(modifier = Modifier
+            Box(modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentSize()
                 .onSizeChanged { size = it }

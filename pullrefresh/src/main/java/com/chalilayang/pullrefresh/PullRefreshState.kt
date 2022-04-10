@@ -61,7 +61,7 @@ class PullRefreshState(
     }
 }
 
-class PullRefreshNestedScrollConnection(
+class RefreshNestedScrollConnection(
     private val state: PullRefreshState,
     private val maxOffsetPx: Float,
     private var triggerOffsetPx: Float,
