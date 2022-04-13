@@ -76,7 +76,7 @@ fun DefaultPreview() {
 
 ## build.gradle添加依赖
 
-`implementation "io.github.chalilayang:pullrefresh:1.0.1"`
+`implementation "io.github.chalilayang:pullrefresh:1.0.3"`
 
 ## Thanks
 
